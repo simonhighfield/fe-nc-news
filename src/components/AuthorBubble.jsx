@@ -2,7 +2,7 @@ import './AuthorBubble.css'
 
 export default function AuthorBubble(props) {
     const { user } = props
-    console.log(user);
+    console.log('in author bubble', user);
 
     return (
         <>

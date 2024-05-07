@@ -24,9 +24,9 @@ export default function ArticleComments(props) {
         })
     }, [])
 
-    function getCommentAuthor (users, comment) {
+    function getUserData (users, content) {
         return users.filter((user) => {
-            return user.username === comment.author
+            return user.username === content.author
         })[0]
     }
 
@@ -38,7 +38,7 @@ export default function ArticleComments(props) {
                     <ul>
                         {currentComments.map((comment) => {
 
-                            let user = getCommentAuthor(users, comment)
+                            let user = getUserData(users, comment)
                             
                             return (
                                 <CommentCard key={comment.comment_id} comment={comment} user={user}/>
