@@ -9,6 +9,7 @@ import './App.css'
 /> */}
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
+import ViewArticle from './components/ViewArticle';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <h1>NC News</h1>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/articles/:article_id' element={<ViewArticle />} />
       </Routes>
     </>
   )
