@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 // import "bootstrap/dist/css/bootstrap.min.css";
 {/* <link
@@ -10,15 +10,26 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ViewArticle from './components/ViewArticle';
+import { fetchUsers } from '../utils/api';
+
 
 function App() {
+
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetchUsers()
+    .then((response) => {
+      setUsers(response.data.users)
+    })
+  }, [])
 
   return (
     <>
       <h1>NC News</h1>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/articles/:article_id' element={<ViewArticle />} />
+        <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
       </Routes>
     </>
   )

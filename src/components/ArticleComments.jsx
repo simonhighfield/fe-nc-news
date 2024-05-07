@@ -9,8 +9,7 @@ export default function ArticleComments(props) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [currentComments, setCurrentComments] = useState([])
-
-    const { article_id } = props;
+    const { article_id, users } = props;
 
     useEffect(() => {
         setIsLoading(true)
@@ -25,6 +24,12 @@ export default function ArticleComments(props) {
         })
     }, [])
 
+    function getCommentAuthor (users, comment) {
+        return users.filter((user) => {
+            return user.username === comment.author
+        })[0]
+    }
+
     return (
         <>
             <h2>comments</h2>
@@ -32,15 +37,18 @@ export default function ArticleComments(props) {
                 <>
                     <ul>
                         {currentComments.map((comment) => {
+
+                            let commentAuthor = getCommentAuthor(users, comment)
+                            
                             return (
-                                <CommentCard key={comment.comment_id} comment={comment}/>
+                                <CommentCard key={comment.comment_id} comment={comment} commentAuthor={commentAuthor}/>
                             )
                         })}
                     </ul>
                 </>
             }
             {isError ? <Error/> : null}
-           
+        
         </>
     )
 }
