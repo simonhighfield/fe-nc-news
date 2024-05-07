@@ -1,7 +1,30 @@
+.item1 {grid-area: picture;}
+.item2 {grid-area: header;}
+.item3 {grid-area: date;}
+.item4 {grid-area: likes;}
+.item5 {grid-area: body;}
+
+
 .comment-card {
     background-color: grey;
+    display: grid;
+    grid-template: 'picture copy copy';
+
 }
 
-img {
-    max-width: 100%;
+.copy {
+    display: grid;
+    grid-template: 
+        'header date likes'
+        'body body body'
+}
+
+
+.user-img {
+    width: 125px;
+    min-width: 50px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 50%;
+    object-fit:fill;
 }
