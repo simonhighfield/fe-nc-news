@@ -1,4 +1,6 @@
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import './ArticleCard.css'
 
 export default function ArticleCard(props) {
@@ -13,7 +15,11 @@ export default function ArticleCard(props) {
                     <Card.Text>
                         {article.author} 
                         <br/>
-                        {article.created_at}</Card.Text>
+                        {article.created_at}
+                    </Card.Text>
+                <Link to={`/articles/${article.article_id}`}>
+                    <Button variant="primary">View Article</Button>
+                </Link>
                 </Card.Body>
             </Card>
         </>    
