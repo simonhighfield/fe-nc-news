@@ -3,14 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './CommentCard.css'
+import AuthorBubble from './AuthorBubble';
 
 export default function CommentCard(props) {
-    const { comment, commentAuthor } = props
+    const { comment, user } = props
 
     return (
         <>
             <div className='comment-card' style={{padding: '1em', margin: '1em'}}>
-                <Image src={commentAuthor.avatar_url} className={'user-img' + ' ' + 'item1'}/>
+                <AuthorBubble user={user} className={'item1'}/>
                 <div className='copy'>
                     <h2 className='item2'>{comment.author}</h2>
                     <h3 className='item3'>{comment.created_at}</h3>

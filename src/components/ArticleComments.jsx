@@ -38,10 +38,10 @@ export default function ArticleComments(props) {
                     <ul>
                         {currentComments.map((comment) => {
 
-                            let commentAuthor = getCommentAuthor(users, comment)
+                            let user = getCommentAuthor(users, comment)
                             
                             return (
-                                <CommentCard key={comment.comment_id} comment={comment} commentAuthor={commentAuthor}/>
+                                <CommentCard key={comment.comment_id} comment={comment} user={user}/>
                             )
                         })}
                     </ul>
