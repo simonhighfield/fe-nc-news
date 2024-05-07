@@ -2,10 +2,12 @@ import { useParams } from 'react-router-dom';
 import { fetchArticle } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
+import Error from './Error';
 
 export default function ViewArticle() {
     
     const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
     const [currentArticle, setCurrentArticle] = useState("")
     const { article_id } = useParams();
     
@@ -15,6 +17,10 @@ export default function ViewArticle() {
         .then((response) => {
             setCurrentArticle(response.data.article)
             setIsLoading(false)
+        })
+        .catch((err) => {
+            setIsLoading(false)
+            setIsError(true)
         })
     }, [])
 
@@ -29,6 +35,7 @@ export default function ViewArticle() {
                     <p>{currentArticle.body}</p>
                 </>
             }
+            {isError ? <Error/> : null}
         </>
     )
 } 
