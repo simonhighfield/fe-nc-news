@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { fetchArticle } from '../../utils/api';
+import { fetchArticleById } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import Error from './Error';
@@ -13,7 +13,7 @@ export default function ViewArticle() {
     
     useEffect(() => {
         setIsLoading(true)
-        fetchArticle(article_id)
+        fetchArticleById(article_id)
         .then((response) => {
             setCurrentArticle(response.data.article)
             setIsLoading(false)

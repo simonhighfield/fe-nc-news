@@ -7,8 +7,7 @@ import Col from "react-bootstrap/Col";
 import './ArticleList.css'
 import Loading from './Loading';
 import Error from './Error';
-
-const endpoint = "https://nc-news-fswv.onrender.com/api/articles"
+import { fetchArticles } from '../../utils/api';
 
 export default function ArticleList() {
     
@@ -18,7 +17,7 @@ export default function ArticleList() {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(endpoint)
+        fetchArticles()
         .then((response) => {
             setArticles(response.data.articles)
             setIsLoading(false)
