@@ -10,6 +10,8 @@ export default function ViewArticle(props) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [currentArticle, setCurrentArticle] = useState("")
+    const [currentVotes, setCurrentVotes] = useState(0)
+    const [hasVoted, setHasVoted] = useState("")
     const { article_id } = useParams();
     const { users } = props
     
@@ -18,6 +20,7 @@ export default function ViewArticle(props) {
         fetchArticleById(article_id)
         .then((response) => {
             setCurrentArticle(response)
+            setCurrentVotes(response.votes)
             setIsLoading(false)
         })
         .catch((err) => {
@@ -27,8 +30,21 @@ export default function ViewArticle(props) {
     }, [])
 
     function handleVote() {
-        voteOnArticle(currentArticle.article_id)
+
+        if (hasVoted !== "up") {
+            setCurrentVotes(currentVotes + 1)
+            setHasVoted("up")
+            voteOnArticle(currentArticle.article_id).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes - 1)
+            })
+        }
     }
+
+    // make optimistic
+    // if upvoted, can't upvote again
+    // add downvote
+    // if downvoted can't downvote again
 
     return (
         <>
@@ -38,8 +54,8 @@ export default function ViewArticle(props) {
                     <h2>{currentArticle.author}</h2>
                     <h3>{currentArticle.created_at}</h3>
                     <img src={currentArticle.article_img_url}/>
-                    <h3>{currentArticle.votes}</h3>
-                    <button onClick={handleVote}>vote</button>
+                    <h3>{currentVotes}</h3>
+                    <button onClick={handleVote}>up-vote</button>
                     <p>{currentArticle.body}</p>
                 </main>
             }
