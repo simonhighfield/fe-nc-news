@@ -1,5 +1,5 @@
-export default function getUserData (users, content) {
+export default function getUserData (users, username) {
     return users.filter((user) => {
-        return user.username === content.author
+        return user.username === username
     })[0]
 }
