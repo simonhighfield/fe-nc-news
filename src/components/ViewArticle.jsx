@@ -4,16 +4,15 @@ import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import Error from './Error';
 import ArticleComments from './ArticleComments';
+import handleVote from '../../utils/handleVote';
 
-export default function ViewArticle(props) {
-    
+export default function ViewArticle({ users }) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [currentArticle, setCurrentArticle] = useState("")
     const [currentVotes, setCurrentVotes] = useState(0)
     const [hasVoted, setHasVoted] = useState("")
     const { article_id } = useParams();
-    const { users } = props
     
     useEffect(() => {
         setIsLoading(true)
@@ -29,65 +28,7 @@ export default function ViewArticle(props) {
         })
     }, [])
 
-    function handleVote(voteDirection) {
-
-        // if has voted down, 
-
-        if (voteDirection === "up" && hasVoted === "") {
-            setCurrentVotes(currentVotes + 1)
-            setHasVoted("up")
-            voteOnArticle(currentArticle.article_id, 1).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes - 1)
-            })
-        }
-
-        if (voteDirection === "up" && hasVoted === "up") {
-            setCurrentVotes(currentVotes - 1)
-            setHasVoted("")
-            voteOnArticle(currentArticle.article_id, -1).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes - 1)
-            })
-        }
-
-        if (voteDirection === "up" && hasVoted === "down") {
-            setCurrentVotes(currentVotes + 2)
-            setHasVoted("up")
-            voteOnArticle(currentArticle.article_id, 2).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes + 2)
-            })
-        }
-
-        if (voteDirection === "down" && hasVoted === "") {
-            setCurrentVotes(currentVotes - 1)
-            setHasVoted("down")
-            voteOnArticle(currentArticle.article_id, - 1).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes + 1)
-            })
-        }
-
-        if (voteDirection === "down" && hasVoted === "down") {
-            setCurrentVotes(currentVotes + 1)
-            setHasVoted("")
-            voteOnArticle(currentArticle.article_id, 1).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes + 1)
-            })
-        }
-
-        if (voteDirection === "down" && hasVoted === "up") {
-            setCurrentVotes(currentVotes - 2)
-            setHasVoted("down")
-            voteOnArticle(currentArticle.article_id, -2).catch((err) => {
-                setIsError(true)
-                setCurrentVotes(currentVotes - 2)
-            })
-        }
-    }
-
+   
     return (
         <>
             {isLoading ? <Loading /> : 
@@ -97,8 +38,8 @@ export default function ViewArticle(props) {
                     <h3>{currentArticle.created_at}</h3>
                     <img src={currentArticle.article_img_url}/>
                     <h3>{currentVotes}</h3>
-                    <button onClick={() => handleVote("up")}>up-vote</button>
-                    <button onClick={() => handleVote("down")}>down-vote</button>
+                    <button onClick={() => handleVote(currentArticle, "up", hasVoted, setHasVoted, currentVotes, setCurrentVotes)}>up-vote</button>
+                    <button onClick={() => handleVote(currentArticle, "down", hasVoted, setHasVoted, currentVotes, setCurrentVotes)}>down-vote</button>
                     <p>{currentArticle.body}</p>
                 </main>
             }
