@@ -27,3 +27,11 @@ export function fetchUsers() {
         return response.data.users
     })
 }
+
+export function voteOnArticle(article_id, incriment) {
+    return newsApi.patch(`/articles/${article_id}`, {
+        inc_votes: incriment
+    }).then((response) => {
+        return response.data.updatedArticle
+    })
+}
