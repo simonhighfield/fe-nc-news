@@ -17,7 +17,7 @@ import Loading from './components/Loading';
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState("")
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function App() {
     })
     .catch((err) => {
       setIsLoading(false)
-      setIsError(true)
+      setIsError(err.response.data.msg)
     })
   }, [])
 
@@ -42,7 +42,7 @@ function App() {
           <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
         </Routes>
       }
-      {isError ? <Error/> : null}
+      {isError ? <Error message={isError}/> : null}
     </>
   )
 }

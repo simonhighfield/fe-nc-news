@@ -8,7 +8,7 @@ import getUserData from "../../utils/getUserData"
 export default function ArticleComments({ article_id, users }) {
 
     const [isLoading, setIsLoading] = useState(true)
-    const [isError, setIsError] = useState(false)
+    const [isError, setIsError] = useState("")
     const [currentComments, setCurrentComments] = useState([])
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function ArticleComments({ article_id, users }) {
         })
         .catch((err) => {
             setIsLoading(false)
-            setIsError(true)
+            setIsError(err.response.data.msg)
         })
     }, [])
 
@@ -38,8 +38,7 @@ export default function ArticleComments({ article_id, users }) {
                 </ul>
             
             }
-            {isError ? <Error/> : null}
-        
+            {isError ? <Error message={isError}/> : null}
         </section>
     )
 }

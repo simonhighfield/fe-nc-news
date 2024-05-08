@@ -12,7 +12,7 @@ import { fetchArticles } from '../../utils/api';
 export default function ArticleList() {
     
     const [isLoading, setIsLoading] = useState(true)
-    const [isError, setIsError] = useState(false)
+    const [isError, setIsError] = useState("")
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function ArticleList() {
         })
         .catch((err) => {
             setIsLoading(false)
-            setIsError(true)
+            setIsError(err.response.data.msg)
         })
     }, [])
 
@@ -41,7 +41,7 @@ export default function ArticleList() {
                     })}
                 </ul>
             }
-            {isError ? <Error/> : null}
+        {isError ? <Error message={isError}/> : null}
         </main>
     )
 } 

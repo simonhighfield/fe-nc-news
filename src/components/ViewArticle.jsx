@@ -8,7 +8,7 @@ import handleVote from '../../utils/handleVote';
 
 export default function ViewArticle({ users }) {
     const [isLoading, setIsLoading] = useState(true)
-    const [isError, setIsError] = useState(false)
+    const [isError, setIsError] = useState("")
     const [currentArticle, setCurrentArticle] = useState("")
     const [currentVotes, setCurrentVotes] = useState(0)
     const [hasVoted, setHasVoted] = useState("")
@@ -24,7 +24,7 @@ export default function ViewArticle({ users }) {
         })
         .catch((err) => {
             setIsLoading(false)
-            setIsError(true)
+            setIsError(err.response.data.msg)
         })
     }, [])
 
@@ -43,8 +43,10 @@ export default function ViewArticle({ users }) {
                     <p>{currentArticle.body}</p>
                 </main>
             }
-            {isError ? <Error/> : null}
+            {isError ? <Error message={isError}/> : null}
             <ArticleComments article_id={article_id} users={users}/>
         </>
     )
 } 
+// make it -1, rather than -2
+// highlight whichever is clicked
