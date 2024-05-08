@@ -49,11 +49,24 @@ export default function ViewArticle(props) {
             })
         }
 
+        if (voteDirection === "down" && hasVoted !== "down") {
+            setCurrentVotes(currentVotes - 1)
+            setHasVoted("down")
+            voteOnArticle(currentArticle.article_id, - 1).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes + 1)
+            })
+        }
 
+        if (voteDirection === "down" && hasVoted === "down") {
+            setCurrentVotes(currentVotes + 1)
+            setHasVoted("")
+            voteOnArticle(currentArticle.article_id, 1).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes + 1)
+            })
+        }
     }
-
-    // add downvote
-    // if downvoted can't downvote again
 
     return (
         <>
