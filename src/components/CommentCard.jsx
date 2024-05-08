@@ -7,7 +7,6 @@ import AuthorBubble from './AuthorBubble';
 
 export default function CommentCard(props) {
     const { comment, user } = props
-    console.log('in comment card', user);
 
     return (
         <>

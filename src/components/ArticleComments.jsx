@@ -3,6 +3,7 @@ import { fetchArticleComments } from "../../utils/api"
 import Loading from './Loading';
 import Error from './Error';
 import CommentCard from "./CommentCard";
+import getUserData from "../../utils/getUserData"
 
 export default function ArticleComments(props) {
 
@@ -24,12 +25,6 @@ export default function ArticleComments(props) {
         })
     }, [])
 
-    function getUserData (users, content) {
-        return users.filter((user) => {
-            return user.username === content.author
-        })[0]
-    }
-
     return (
         <>
             <h2>comments</h2>
@@ -37,9 +32,7 @@ export default function ArticleComments(props) {
                 <>
                     <ul>
                         {currentComments.map((comment) => {
-
-                            let user = getUserData(users, comment)
-                            
+                            let user = getUserData(users, comment)                           
                             return (
                                 <CommentCard key={comment.comment_id} comment={comment} user={user}/>
                             )
