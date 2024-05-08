@@ -30,20 +30,18 @@ export default function ArticleList() {
 
 
     return (
-        <>
+        <main>
             <h2>articles</h2>
             {isLoading ? <Loading /> : 
-                <>
-                    <ul className="article-list">
-                        {articles.map((article) => {
-                            return (
-                                <ArticleCard key={article.article_id} article={article}></ArticleCard>
-                            );
-                        })}
-                    </ul>
-                </>
+                <ul className="article-list">
+                    {articles.map((article) => {
+                        return (
+                            <ArticleCard key={article.article_id} article={article}></ArticleCard>
+                        );
+                    })}
+                </ul>
             }
             {isError ? <Error/> : null}
-        </>
+        </main>
     )
 } 

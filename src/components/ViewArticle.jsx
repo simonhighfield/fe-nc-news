@@ -29,13 +29,13 @@ export default function ViewArticle(props) {
     return (
         <>
             {isLoading ? <Loading /> : 
-                <>
+                <main>
                     <h1>{currentArticle.title}</h1>
                     <h2>{currentArticle.author}</h2>
                     <h3>{currentArticle.created_at}</h3>
                     <img src={currentArticle.article_img_url}/>
                     <p>{currentArticle.body}</p>
-                </>
+                </main>
             }
             {isError ? <Error/> : null}
             <ArticleComments article_id={article_id} users={users}/>

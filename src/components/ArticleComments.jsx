@@ -26,22 +26,21 @@ export default function ArticleComments(props) {
     }, [])
 
     return (
-        <>
+        <section>
             <h2>comments</h2>
             {isLoading ? <Loading /> : 
-                <>
-                    <ul>
-                        {currentComments.map((comment) => {
-                            let user = getUserData(users, comment)                           
-                            return (
-                                <CommentCard key={comment.comment_id} comment={comment} user={user}/>
-                            )
-                        })}
-                    </ul>
-                </>
+                <ul>
+                    {currentComments.map((comment) => {
+                        let user = getUserData(users, comment)                           
+                        return (
+                            <CommentCard key={comment.comment_id} comment={comment} user={user}/>
+                        )
+                    })}
+                </ul>
+            
             }
             {isError ? <Error/> : null}
         
-        </>
+        </section>
     )
 }
