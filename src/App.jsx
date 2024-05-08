@@ -11,26 +11,38 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ViewArticle from './components/ViewArticle';
 import { fetchUsers } from '../utils/api';
+import Loading from './components/Loading';
 
 
 function App() {
 
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   const [users, setUsers] = useState([])
 
   useEffect(() => {
+    setIsLoading(true)
     fetchUsers()
     .then((response) => {
+      setIsLoading(false)
       setUsers(response.data.users)
+    })
+    .catch((err) => {
+      setIsLoading(false)
+      setIsError(true)
     })
   }, [])
 
   return (
     <>
       <h1>NC News</h1>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
-      </Routes>
+      {isLoading ? <Loading /> : 
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
+        </Routes>
+      }
+      {isError ? <Error/> : null}
     </>
   )
 }
