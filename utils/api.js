@@ -28,9 +28,9 @@ export function fetchUsers() {
     })
 }
 
-export function voteOnArticle(article_id) {
+export function voteOnArticle(article_id, incriment) {
     return newsApi.patch(`/articles/${article_id}`, {
-        inc_votes: 1
+        inc_votes: incriment
     }).then((response) => {
         return response.data.updatedArticle
     })

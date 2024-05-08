@@ -29,20 +29,29 @@ export default function ViewArticle(props) {
         })
     }, [])
 
-    function handleVote() {
+    function handleVote(voteDirection) {
 
-        if (hasVoted !== "up") {
+        if (voteDirection === "up" && hasVoted !== "up") {
             setCurrentVotes(currentVotes + 1)
             setHasVoted("up")
-            voteOnArticle(currentArticle.article_id).catch((err) => {
+            voteOnArticle(currentArticle.article_id, 1).catch((err) => {
                 setIsError(true)
                 setCurrentVotes(currentVotes - 1)
             })
         }
+
+        if (voteDirection === "up" && hasVoted === "up") {
+            setCurrentVotes(currentVotes - 1)
+            setHasVoted("")
+            voteOnArticle(currentArticle.article_id, -1).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes - 1)
+            })
+        }
+
+
     }
 
-    // make optimistic
-    // if upvoted, can't upvote again
     // add downvote
     // if downvoted can't downvote again
 
@@ -55,7 +64,8 @@ export default function ViewArticle(props) {
                     <h3>{currentArticle.created_at}</h3>
                     <img src={currentArticle.article_img_url}/>
                     <h3>{currentVotes}</h3>
-                    <button onClick={handleVote}>up-vote</button>
+                    <button onClick={() => handleVote("up")}>up-vote</button>
+                    <button onClick={() => handleVote("down")}>down-vote</button>
                     <p>{currentArticle.body}</p>
                 </main>
             }
