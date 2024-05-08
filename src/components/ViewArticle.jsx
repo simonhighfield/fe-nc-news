@@ -31,7 +31,9 @@ export default function ViewArticle(props) {
 
     function handleVote(voteDirection) {
 
-        if (voteDirection === "up" && hasVoted !== "up") {
+        // if has voted down, 
+
+        if (voteDirection === "up" && hasVoted === "") {
             setCurrentVotes(currentVotes + 1)
             setHasVoted("up")
             voteOnArticle(currentArticle.article_id, 1).catch((err) => {
@@ -49,7 +51,16 @@ export default function ViewArticle(props) {
             })
         }
 
-        if (voteDirection === "down" && hasVoted !== "down") {
+        if (voteDirection === "up" && hasVoted === "down") {
+            setCurrentVotes(currentVotes + 2)
+            setHasVoted("up")
+            voteOnArticle(currentArticle.article_id, 2).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes + 2)
+            })
+        }
+
+        if (voteDirection === "down" && hasVoted === "") {
             setCurrentVotes(currentVotes - 1)
             setHasVoted("down")
             voteOnArticle(currentArticle.article_id, - 1).catch((err) => {
@@ -64,6 +75,15 @@ export default function ViewArticle(props) {
             voteOnArticle(currentArticle.article_id, 1).catch((err) => {
                 setIsError(true)
                 setCurrentVotes(currentVotes + 1)
+            })
+        }
+
+        if (voteDirection === "down" && hasVoted === "up") {
+            setCurrentVotes(currentVotes - 2)
+            setHasVoted("down")
+            voteOnArticle(currentArticle.article_id, -2).catch((err) => {
+                setIsError(true)
+                setCurrentVotes(currentVotes - 2)
             })
         }
     }
