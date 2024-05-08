@@ -16,7 +16,7 @@ export default function ArticleComments(props) {
         setIsLoading(true)
         fetchArticleComments(article_id)
         .then((response) => {
-            setCurrentComments(response.data.comments)
+            setCurrentComments(response)
             setIsLoading(false)
         })
         .catch((err) => {

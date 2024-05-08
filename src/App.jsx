@@ -25,7 +25,7 @@ function App() {
     fetchUsers()
     .then((response) => {
       setIsLoading(false)
-      setUsers(response.data.users)
+      setUsers(response)
     })
     .catch((err) => {
       setIsLoading(false)

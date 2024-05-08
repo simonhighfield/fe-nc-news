@@ -17,7 +17,7 @@ export default function ViewArticle(props) {
         setIsLoading(true)
         fetchArticleById(article_id)
         .then((response) => {
-            setCurrentArticle(response.data.article)
+            setCurrentArticle(response)
             setIsLoading(false)
         })
         .catch((err) => {

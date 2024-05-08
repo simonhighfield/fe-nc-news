@@ -19,7 +19,7 @@ export default function ArticleList() {
         setIsLoading(true)
         fetchArticles()
         .then((response) => {
-            setArticles(response.data.articles)
+            setArticles(response)
             setIsLoading(false)
         })
         .catch((err) => {
