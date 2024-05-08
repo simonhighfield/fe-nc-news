@@ -50,3 +50,4 @@ export default function ViewArticle({ users }) {
 } 
 // make it -1, rather than -2
 // highlight whichever is clicked
+// if 404: the vote button is stil there
