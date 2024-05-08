@@ -3,13 +3,15 @@ import { fetchArticleById } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import Error from './Error';
+import ArticleComments from './ArticleComments';
 
-export default function ViewArticle() {
+export default function ViewArticle(props) {
     
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [currentArticle, setCurrentArticle] = useState("")
     const { article_id } = useParams();
+    const { users } = props
     
     useEffect(() => {
         setIsLoading(true)
@@ -36,6 +38,7 @@ export default function ViewArticle() {
                 </>
             }
             {isError ? <Error/> : null}
+            <ArticleComments article_id={article_id} users={users}/>
         </>
     )
 } 
