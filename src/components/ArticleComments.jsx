@@ -5,12 +5,11 @@ import Error from './Error';
 import CommentCard from "./CommentCard";
 import getUserData from "../../utils/getUserData"
 
-export default function ArticleComments(props) {
+export default function ArticleComments({ article_id, users }) {
 
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [currentComments, setCurrentComments] = useState([])
-    const { article_id, users } = props;
 
     useEffect(() => {
         setIsLoading(true)

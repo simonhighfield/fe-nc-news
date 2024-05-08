@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { fetchArticleById } from '../../utils/api';
+import { fetchArticleById, voteOnArticle } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import Error from './Error';
@@ -26,6 +26,10 @@ export default function ViewArticle(props) {
         })
     }, [])
 
+    function handleVote() {
+        voteOnArticle(currentArticle.article_id)
+    }
+
     return (
         <>
             {isLoading ? <Loading /> : 
@@ -34,6 +38,8 @@ export default function ViewArticle(props) {
                     <h2>{currentArticle.author}</h2>
                     <h3>{currentArticle.created_at}</h3>
                     <img src={currentArticle.article_img_url}/>
+                    <h3>{currentArticle.votes}</h3>
+                    <button onClick={handleVote}>vote</button>
                     <p>{currentArticle.body}</p>
                 </main>
             }
