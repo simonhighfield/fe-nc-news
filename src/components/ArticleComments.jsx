@@ -53,7 +53,7 @@ export default function ArticleComments({ article_id, users }) {
                             <CommentCard key={comment.comment_id} comment={comment} user={user}/>
                         )
                     })}
-                    <PostCommentCard currentUser={currentUser}/>
+                    <PostCommentCard currentUser={currentUser} article_id={article_id}/>
                 </ul>
             
             }
