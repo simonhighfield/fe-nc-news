@@ -14,11 +14,9 @@ export default function ArticleComments({ article_id, users }) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [currentComments, setCurrentComments] = useState([])
-    const [newCommentPosted, setNewCommentPosted] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
-        setNewCommentPosted(false)
         fetchArticleComments(article_id)
         .then((response) => {
             setCurrentComments(response)
@@ -28,20 +26,20 @@ export default function ArticleComments({ article_id, users }) {
             setIsLoading(false)
             setIsError(err.response.data.msg)
         })
-    }, [newCommentPosted])
+    }, [])
 
     return (
         <section>
             <h2>comments</h2>
             {isLoading ? <Loading /> : 
                 <ul>
+                    <PostCommentCard currentUser={currentUser} article_id={article_id} currentComments={currentComments} setCurrentComments={setCurrentComments}/>
                     {currentComments.map((comment) => {
                         let user = getUserData(users, comment.author)   
                         return (
                             <CommentCard key={comment.comment_id} comment={comment} user={user}/>
                         )
                     })}
-                    <PostCommentCard currentUser={currentUser} article_id={article_id} newCommentPosted={newCommentPosted} setNewCommentPosted={setNewCommentPosted}/>
                 </ul>
             
             }

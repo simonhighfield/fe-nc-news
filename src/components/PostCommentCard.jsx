@@ -4,27 +4,22 @@ import AuthorBubble from './AuthorBubble';
 import { useState } from 'react';
 import { commentOnArticle } from '../../utils/api';
 
-
-
-// steps:
-
-// render from api? ORRRRRRRR maybe instead of refreshing, get it to be highlighted WHILST posting, and then manually push it to the list using state ... rather than rerender whole thing
-// 3. move currentUser state to the top level
-// 4. get API post working
-// 5. display newly posted comment optimistically? OR comments list should refresh with newly posted
-
-
-export default function PostCommentCard({ currentUser, article_id, newCommentPosted, setNewCommentPosted }) {
-
+export default function PostCommentCard({ currentUser, article_id, newCommentPosted, setNewCommentPosted, currentComments, setCurrentComments }) {
     const [newComment, setNewComment] = useState("")
+    const [isLoading, setIsLoading] = useState(true)
     
     function handleSubmit(event) {
         event.preventDefault();
+        setIsLoading(true)
         commentOnArticle(article_id, currentUser.username, newComment)
-        .then(() => {
-            setNewCommentPosted(true)
+        .then((postedComment) => {
+            setNewComment("")
+            // Updating the state only refreshes currentComments.map in ArticleComments.jsx; whereas useEffect reloads the whole page
+            setCurrentComments((currentComments) =>
+                [postedComment,...currentComments] 
+            )
+            setIsLoading(false)
         })
-        setNewComment("")
     }
 
 
