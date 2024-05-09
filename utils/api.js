@@ -39,8 +39,7 @@ export function voteOnArticle(article_id, incriment) {
 
 export function commentOnArticle(article_id, username, newComment) {
     return newsApi.post(`/articles/${article_id}/comments`, {
-        // Note: must be called username here, but is renamed as author once in database
-        username: username,
+        author: username,
         body: newComment
     })
     .then((response) => {

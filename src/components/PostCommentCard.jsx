@@ -5,19 +5,24 @@ import { commentOnArticle } from '../../utils/api';
 
 
 
-// steps: 
+// steps:
+
+// After post, need to refresh the comment list - this does refresh but it isn't including the new comment
 // 3. move currentUser state to the top level
 // 4. get API post working
 // 5. display newly posted comment optimistically? OR comments list should refresh with newly posted
 
 
-export default function PostCommentCard({ currentUser, article_id }) {
+export default function PostCommentCard({ currentUser, article_id, newCommentPosted, setNewCommentPosted }) {
 
     const [newComment, setNewComment] = useState("")
     
     function handleSubmit(event) {
         event.preventDefault();
         commentOnArticle(article_id, currentUser.username, newComment)
+        .then(() => {
+            setNewCommentPosted(true)
+        })
         setNewComment("")
     }
 
