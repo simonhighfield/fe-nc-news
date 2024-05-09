@@ -31,7 +31,18 @@ export function fetchUsers() {
 export function voteOnArticle(article_id, incriment) {
     return newsApi.patch(`/articles/${article_id}`, {
         inc_votes: incriment
-    }).then((response) => {
+    })
+    .then((response) => {
         return response.data.updatedArticle
+    })
+}
+
+export function commentOnArticle(article_id, username, newComment) {
+    return newsApi.post(`/articles/${article_id}/comments`, {
+        author: username,
+        body: newComment
+    })
+    .then((response) => {
+        return response.data.postedComment
     })
 }
