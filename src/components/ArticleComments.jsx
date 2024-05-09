@@ -33,15 +33,14 @@ export default function ArticleComments({ article_id, users }) {
             <h2>comments</h2>
             {isLoading ? <Loading /> : 
                 <ul>
-                    <PostCommentCard currentUser={currentUser} article_id={article_id} currentComments={currentComments} setCurrentComments={setCurrentComments}/>
+                    <PostCommentCard currentUser={currentUser} article_id={article_id}  currentComments={currentComments} setCurrentComments={setCurrentComments}/>
                     {currentComments.map((comment) => {
                         let user = getUserData(users, comment.author)   
                         return (
                             <CommentCard key={comment.comment_id} comment={comment} user={user}/>
                         )
                     })}
-                </ul>
-            
+                </ul>   
             }
             {isError ? <Error message={isError}/> : null}
         </section>
