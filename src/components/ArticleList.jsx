@@ -1,22 +1,19 @@
 import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import './ArticleList.css'
 import Loading from './Loading';
 import Error from './Error';
 import { fetchArticles } from '../../utils/api';
-import { useSearchParams } from "react-router-dom";
+import Select from 'react-select'
+import './OptionsSelect.css'
 
 export default function ArticleList( { topic }) {
     
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [articles, setArticles] = useState([]);
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // console.log(searchParams); // URLSearchParams {}
+    const [sort_by, set_sort_by] = useState("");
+    const [order, set_order] = useState("");
 
     useEffect(() => {
         setIsLoading(true)
@@ -32,8 +29,41 @@ export default function ArticleList( { topic }) {
     }, [])
 
 
+    const sortByOptions = [
+        {value: 'votes', label: 'Votes'},
+        {value: 'created_at', label: 'Date'},
+        {value: 'comment_count', label: 'Comments'}    
+    ]
+
+    const orderOptions = [
+        {value: 'DESC', label: 'Descending'},
+        {value: 'ASC', label: 'Ascending'},
+    ]
+
+    function handleSort(event) {        
+        fetchArticles(topic, event.value, order)
+        .then((response) => {
+            setArticles(response)
+            set_sort_by(event.value)
+        })
+    }
+
+    function handleOrder(event) {
+        fetchArticles(topic, sort_by, event.value)
+        .then((response) => {
+            setArticles(response)
+            set_order(event.value)
+        })
+    }
+
+
     return (
         <main>
+            <Select options={sortByOptions} className="options-select" onChange={handleSort}/>
+            <Select options={orderOptions} className="options-select" onChange={handleOrder}/>
+            
+            
+      
             <h2>articles</h2>
             {isLoading ? <Loading /> : 
                 <ul className="article-list">
