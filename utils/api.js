@@ -5,12 +5,13 @@ const newsApi = axios.create({
 })
 
 export function fetchArticles(topic, sort_by) {
-    return newsApi.get('/articles/?', {
-        params: {
-            topic: topic,
-            sort_by: sort_by
-        }
-    }).then((response) => {
+
+    const params = {}
+    if (topic) {params.topic = topic}
+    if (sort_by) {params.sort_by = sort_by}
+
+    return newsApi.get('/articles/?', {params})
+    .then((response) => {
         return response.data.articles
     })
 }
