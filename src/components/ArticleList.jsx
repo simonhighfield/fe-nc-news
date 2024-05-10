@@ -1,22 +1,18 @@
 import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import './ArticleList.css'
 import Loading from './Loading';
 import Error from './Error';
 import { fetchArticles } from '../../utils/api';
-import { useSearchParams } from "react-router-dom";
+import Select from 'react-select'
+import './OptionsSelect.css'
 
 export default function ArticleList( { topic }) {
     
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [articles, setArticles] = useState([]);
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // console.log(searchParams); // URLSearchParams {}
+
 
     useEffect(() => {
         setIsLoading(true)
@@ -32,8 +28,10 @@ export default function ArticleList( { topic }) {
     }, [])
 
 
+
     return (
         <main>
+
             <h2>articles</h2>
             {isLoading ? <Loading /> : 
                 <ul className="article-list">
