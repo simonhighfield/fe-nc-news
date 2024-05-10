@@ -9,8 +9,7 @@ export function fetchArticles(topic, sort_by) {
     const params = {}
     if (topic) {params.topic = topic}
     if (sort_by) {params.sort_by = sort_by}
-
-    return newsApi.get('/articles/?', {params})
+    return newsApi.get('/articles/', {params})
     .then((response) => {
         return response.data.articles
     })

@@ -36,7 +36,6 @@ export default function ArticleList( { topic }) {
     function handleSelect(event) {
         fetchArticles(topic, event.value)
         .then((response) => {
-            console.log('responded');
             setArticles(response)
         })
         

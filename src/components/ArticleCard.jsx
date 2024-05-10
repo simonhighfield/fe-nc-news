@@ -5,7 +5,6 @@ import './ArticleCard.css'
 
 export default function ArticleCard({ article }) {
     const date = new Date(article.created_at).toLocaleDateString('en-GB', { hour12: false })
-    console.log(article);
     return (
         <Card className="article-card">
             <Card.Img variant="top" src={article.article_img_url} />
