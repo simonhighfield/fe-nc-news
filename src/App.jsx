@@ -13,6 +13,7 @@ import ViewArticle from './components/ViewArticle';
 import { fetchUsers } from '../utils/api';
 import Loading from './components/Loading';
 import ViewTopic from './components/ViewTopic';
+import Error from './components/Error';
 
 function App() {
 
@@ -40,7 +41,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
-          <Route path='/topics/:topic' element={<ViewTopic users={users}/>} />        
+          <Route path='/topics/:topic' element={<ViewTopic users={users}/>} />
+          <Route path="*" element={<Error message={"404 error!"}/>} />        
         </Routes>
       }
       {isError ? <Error message={isError}/> : null}

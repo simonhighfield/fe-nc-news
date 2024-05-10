@@ -5,7 +5,6 @@ import Loading from './Loading';
 import Error from './Error';
 import ArticleComments from './ArticleComments';
 import handleVote from '../../utils/handleVote';
-import { Button } from 'react-bootstrap';
 import './VoteButton.css'
 
 export default function ViewArticle({ users }) {
@@ -30,23 +29,28 @@ export default function ViewArticle({ users }) {
         })
     }, [])
 
-   
+   if (isError) {
     return (
-        <>
-            {isLoading ? <Loading /> : 
-                <main>
-                    <h1>{currentArticle.title}</h1>
-                    <h2>{currentArticle.author}</h2>
-                    <h3>{currentArticle.created_at}</h3>
-                    <img src={currentArticle.article_img_url}/>
-                    <h3>{currentVotes}</h3>
-                    <button onClick={() => handleVote(currentArticle, "up", hasVoted, setHasVoted, currentVotes, setCurrentVotes)} className={hasVoted === "up" ? "selected" : null}>up-vote</button>
-                    <button onClick={() => handleVote(currentArticle, "down", hasVoted, setHasVoted, currentVotes, setCurrentVotes)} className={hasVoted === "down" ? "selected" : null}>down-vote</button>
-                    <p>{currentArticle.body}</p>
-                </main>
-            }
-            {isError ? <Error message={isError}/> : null}
-            <ArticleComments article_id={article_id} users={users}/>
-        </>
+        <Error message={isError}/>
     )
-} 
+   } else {
+        return (
+            <>
+                {isLoading ? <Loading /> : 
+                    <main>
+                        <h1>{currentArticle.title}</h1>
+                        <h2>{currentArticle.author}</h2>
+                        <h3>{currentArticle.created_at}</h3>
+                        <img src={currentArticle.article_img_url}/>
+                        <h3>{currentVotes}</h3>
+                        <button onClick={() => handleVote(currentArticle, "up", hasVoted, setHasVoted, currentVotes, setCurrentVotes)} className={hasVoted === "up" ? "selected" : null}>up-vote</button>
+                        <button onClick={() => handleVote(currentArticle, "down", hasVoted, setHasVoted, currentVotes, setCurrentVotes)} className={hasVoted === "down" ? "selected" : null}>down-vote</button>
+                        <p>{currentArticle.body}</p>
+                    </main>
+                }
+                <ArticleComments article_id={article_id} users={users}/>
+                {isError ? <Error message={isError}/> : null}
+            </>
+        )
+   }
+}
