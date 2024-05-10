@@ -5,14 +5,21 @@ import { Link } from 'react-router-dom';
 import './CommentCard.css'
 import AuthorBubble from './AuthorBubble';
 import { deleteComment } from '../../utils/api';
+import { useState } from 'react';
 
-export default function CommentCard(props) {
-    const { comment, user, currentUser } = props
+
+export default function CommentCard({ comment, user, currentUser, currentComments, setCurrentComments }) {
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleDelete(event) {
+        setIsLoading(true)
         deleteComment(comment.comment_id)
-        .then(()=> {
-            console.log('here');
+        .then((response)=> {
+            setCurrentComments((currentComments) => {
+                let index = currentComments.indexOf(comment)
+                return [...currentComments.slice(0, index), ...currentComments.slice(index+1)]
+            })
+            setIsLoading(false)
         })
         .catch((err) => {
             console.log(err);
@@ -29,8 +36,12 @@ export default function CommentCard(props) {
                     <h3 className='item3'>{comment.created_at}</h3>
                     <p className='item4'>Votes: {comment.votes}</p>
                     <p className='item5'>{comment.body}</p>
-                    {comment.author === currentUser.username ? <button onClick={handleDelete}>delete</button> : null}
-                    
+                    {comment.author === currentUser.username 
+                        ? <button onClick={handleDelete}>
+                            {isLoading ? 'deleting ...' : 'delete'}
+                        </button> 
+                        : null
+                    }
                 </div>
             </div>
 

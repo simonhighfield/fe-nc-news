@@ -48,8 +48,5 @@ export function commentOnArticle(article_id, username, newComment) {
 }
 
 export function deleteComment(comment_id) {
-    newsApi.delete(`/comments/${comment_id}`)
-    .then(() => {
-        console.log('deleted comment', comment_id );
-    })
+    return newsApi.delete(`/comments/${comment_id}`)
 }

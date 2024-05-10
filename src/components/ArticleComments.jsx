@@ -37,7 +37,7 @@ export default function ArticleComments({ article_id, users }) {
                     {currentComments.map((comment) => {
                         let user = getUserData(users, comment.author)   
                         return (
-                            <CommentCard key={comment.comment_id} comment={comment} user={user} currentUser={currentUser}/>
+                            <CommentCard key={comment.comment_id} comment={comment} user={user} currentUser={currentUser} currentComments={currentComments} setCurrentComments={setCurrentComments}/>
                         )
                     })}
                 </ul>   
