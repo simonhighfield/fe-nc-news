@@ -27,12 +27,29 @@ export default function ArticleList( { topic }) {
         })
     }, [])
 
+    // selector, the state of which feeds api
+    const options = [
+        {value: 'votes', label: 'Votes'},
+        {value: 'created_at', label: 'Date'},
+        {value: 'comment_count', label: 'Comments'}    
+    ]
 
+    function handleSelect(event) {
+        fetchArticles(topic, event.value)
+        .then((response) => {
+            console.log('responded');
+            setArticles(response)
+        })
+        
+    }
 
 
     return (
         <main>
-   
+            <Select options={options} className="options-select" onChange={handleSelect}>
+            
+            </Select>
+      
             <h2>articles</h2>
             {isLoading ? <Loading /> : 
                 <ul className="article-list">
