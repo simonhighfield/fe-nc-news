@@ -8,16 +8,19 @@ import './ArticleList.css'
 import Loading from './Loading';
 import Error from './Error';
 import { fetchArticles } from '../../utils/api';
+import { useSearchParams } from "react-router-dom";
 
-export default function ArticleList() {
+export default function ArticleList( { topic }) {
     
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [articles, setArticles] = useState([]);
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // console.log(searchParams); // URLSearchParams {}
 
     useEffect(() => {
         setIsLoading(true)
-        fetchArticles()
+        fetchArticles(topic)
         .then((response) => {
             setArticles(response)
             setIsLoading(false)
