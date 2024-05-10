@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchTopics } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 
 export default function TopicsList() {
@@ -23,7 +24,9 @@ export default function TopicsList() {
     return (
         <section>
             {topics.map((topic) => {
-                return <button>#{topic.slug}</button>
+                return (
+                    <Link to={`/topics/${topic.slug}`}><button>#{topic.slug}</button></Link>
+                )
             })}
         </section>
     )

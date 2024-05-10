@@ -12,7 +12,7 @@ import Home from './components/Home';
 import ViewArticle from './components/ViewArticle';
 import { fetchUsers } from '../utils/api';
 import Loading from './components/Loading';
-
+import ViewTopic from './components/ViewTopic';
 
 function App() {
 
@@ -40,6 +40,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
+          <Route path='/topics/:topic' element={<ViewTopic users={users}/>} />        
         </Routes>
       }
       {isError ? <Error message={isError}/> : null}
