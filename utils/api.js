@@ -50,3 +50,9 @@ export function commentOnArticle(article_id, username, newComment) {
 export function deleteComment(comment_id) {
     return newsApi.delete(`/comments/${comment_id}`)
 }
+
+export function fetchTopics() {
+    return newsApi.get(`/topics`).then((response) => {
+        return response.data.topics
+    })
+}
