@@ -23,9 +23,9 @@ export default function TopicsList() {
 
     return (
         <section>
-            {topics.map((topic) => {
+            {topics.map((topic, index) => {
                 return (
-                    <Link to={`/topics/${topic.slug}`}><button>#{topic.slug}</button></Link>
+                    <Link to={`/topics/${topic.slug}`} key={index}><button>#{topic.slug}</button></Link>
                 )
             })}
         </section>

@@ -4,8 +4,10 @@ const newsApi = axios.create({
     baseURL: "https://nc-news-fswv.onrender.com/api"
 })
 
-export function fetchArticles() {
-    return newsApi.get(`/articles/`).then((response) => {
+export function fetchArticles(topic) {
+    let searchString = '/articles'
+    if (topic) {searchString += `?topic=${topic}`}  
+    return newsApi.get(searchString).then((response) => {
         return response.data.articles
     })
 }
