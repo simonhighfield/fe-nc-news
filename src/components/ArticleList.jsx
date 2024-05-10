@@ -12,7 +12,8 @@ export default function ArticleList( { topic }) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [articles, setArticles] = useState([]);
-
+    const [sort_by, set_sort_by] = useState("");
+    const [order, set_order] = useState("");
 
     useEffect(() => {
         setIsLoading(true)
@@ -27,26 +28,41 @@ export default function ArticleList( { topic }) {
         })
     }, [])
 
-    const options = [
+
+    const sortByOptions = [
         {value: 'votes', label: 'Votes'},
         {value: 'created_at', label: 'Date'},
         {value: 'comment_count', label: 'Comments'}    
     ]
 
-    function handleSelect(event) {
-        fetchArticles(topic, event.value)
+    const orderOptions = [
+        {value: 'DESC', label: 'Descending'},
+        {value: 'ASC', label: 'Ascending'},
+    ]
+
+    function handleSort(event) {        
+        fetchArticles(topic, event.value, order)
         .then((response) => {
             setArticles(response)
+            set_sort_by(event.value)
         })
-        
+    }
+
+    function handleOrder(event) {
+        fetchArticles(topic, sort_by, event.value)
+        .then((response) => {
+            setArticles(response)
+            set_order(event.value)
+        })
     }
 
 
     return (
         <main>
-            <Select options={options} className="options-select" onChange={handleSelect}>
+            <Select options={sortByOptions} className="options-select" onChange={handleSort}/>
+            <Select options={orderOptions} className="options-select" onChange={handleOrder}/>
             
-            </Select>
+            
       
             <h2>articles</h2>
             {isLoading ? <Loading /> : 
