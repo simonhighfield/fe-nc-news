@@ -37,7 +37,8 @@ export default function CommentCard({ comment, user, currentUser, currentComment
                     <p className='item4'>Votes: {comment.votes}</p>
                     <p className='item5'>{comment.body}</p>
                     {comment.author === currentUser.username 
-                        ? <button onClick={handleDelete}>
+                        ? <button onClick={isLoading ? null : handleDelete}
+                            className={isLoading ? 'deleting' : null}>
                             {isLoading ? 'deleting ...' : 'delete'}
                         </button> 
                         : null
