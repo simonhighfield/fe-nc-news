@@ -46,3 +46,7 @@ export function commentOnArticle(article_id, username, newComment) {
         return response.data.postedComment
     })
 }
+
+export function deleteComment(comment_id) {
+    return newsApi.delete(`/comments/${comment_id}`)
+}

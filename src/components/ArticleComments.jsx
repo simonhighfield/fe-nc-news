@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { commentOnArticle, fetchArticleComments } from "../../utils/api"
+import { commentOnArticle, deleteComment, fetchArticleComments } from "../../utils/api"
 import Loading from './Loading';
 import Error from './Error';
 import CommentCard from "./CommentCard";
@@ -37,7 +37,7 @@ export default function ArticleComments({ article_id, users }) {
                     {currentComments.map((comment) => {
                         let user = getUserData(users, comment.author)   
                         return (
-                            <CommentCard key={comment.comment_id} comment={comment} user={user}/>
+                            <CommentCard key={comment.comment_id} comment={comment} user={user} currentUser={currentUser} currentComments={currentComments} setCurrentComments={setCurrentComments}/>
                         )
                     })}
                 </ul>   
