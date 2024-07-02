@@ -17,7 +17,7 @@ export default function ArticleList( { topic }) {
 
     useEffect(() => {
         setIsLoading(true)
-        fetchArticles(topic)
+        fetchArticles(topic, sort_by, order)
         .then((response) => {
             setArticles(response)
             setIsLoading(false)
@@ -26,7 +26,7 @@ export default function ArticleList( { topic }) {
             setIsLoading(false)
             setIsError(err.response.data.msg)
         })
-    }, [])
+    }, [topic])
 
 
     const sortByOptions = [
