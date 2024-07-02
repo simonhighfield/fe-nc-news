@@ -3,7 +3,7 @@ import { fetchTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
 
 
-export default function TopicsList() {
+export default function TopicsList(topic, setTopic) {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [topics, setTopics] = useState([]);
@@ -21,14 +21,17 @@ export default function TopicsList() {
         })
     }, [])
 
+    function handleSelectTopic(event) {
+        // console.log(event.target.childNodes[1].data);
+    }
+
     return (
         <section>
             {topics.map((topic, index) => {
                 return (
-                    <Link to={`/topics/${topic.slug}`} key={index}><button>#{topic.slug}</button></Link>
+                    <Link to={`/topics/${topic.slug}`} key={index}><button onClick={handleSelectTopic}>#{topic.slug}</button></Link>
                 )
             })}
         </section>
     )
-    
 }

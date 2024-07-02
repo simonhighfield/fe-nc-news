@@ -14,12 +14,15 @@ import { fetchUsers } from '../utils/api';
 import Loading from './components/Loading';
 import ViewTopic from './components/ViewTopic';
 import Error from './components/Error';
+import NavBar from './components/NavBar';
 
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState("")
   const [users, setUsers] = useState([])
+  const [topic, setTopic] = useState("")
+
 
   useEffect(() => {
     setIsLoading(true)
@@ -36,12 +39,12 @@ function App() {
 
   return (
     <>
-      <h1>NC News</h1>
+      <NavBar topic={topic} setTopic={setTopic}/>
       {isLoading ? <Loading /> : 
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/articles/:article_id' element={<ViewArticle users={users}/>} />
-          <Route path='/topics/:topic' element={<ViewTopic users={users}/>} />
+          <Route path='/topics/:topic' element={<ViewTopic users={users} setTopic={setTopic}/>} />
           <Route path="*" element={<Error message={"404 error!"}/>} />        
         </Routes>
       }
