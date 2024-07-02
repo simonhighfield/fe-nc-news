@@ -59,15 +59,13 @@ export default function ArticleList( { topic }) {
 
     return (
         <main>
-            <label>
-                Sort by:
-                <Select options={sortByOptions} className="options-select" onChange={handleSort} defaultValue={sortByOptions[1]}/>
-            </label>
-            
-            <label>
-                Sort order:
-                <Select options={orderOptions} className="options-select" onChange={handleOrder} defaultValue={orderOptions[0]}/>
-            </label>
+            <div className="options-bar">
+                <label className="options-item" htmlFor="sortSelect">Sort by: </label>
+                <Select className={"options-item options-select"} options={sortByOptions} id="sortSelect" onChange={handleSort} defaultValue={sortByOptions[0]}/>
+                
+                <label className="options-item" htmlFor="orderSelect">Sort order:</label>
+                <Select className={"options-item options-select"} options={orderOptions} id="orderSelect" onChange={handleOrder} defaultValue={orderOptions[0]}/>
+            </div>
             
             
       
