@@ -1,3 +1,12 @@
 .options-select {
-    font-style: black;
+    color: black;
+    
+}
+
+.options-bar {
+    display: flex;
+}
+
+.options-item {
+    width: 25%;
 }
