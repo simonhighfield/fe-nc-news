@@ -21,12 +21,16 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-body {
+ body {
   margin: 0;
   display: flex;
   place-items: center;
+}
+
+main {
+  place-items: center;
   min-width: 320px;
+  max-width: 50em;
   min-height: 100vh;
 }
 
