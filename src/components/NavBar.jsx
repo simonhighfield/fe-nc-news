@@ -1,4 +1,5 @@
 import TopicsList from "./TopicsList";
+import "./NavBar.css"
 
 export default function NavBar(topic, setTopic) {
 
