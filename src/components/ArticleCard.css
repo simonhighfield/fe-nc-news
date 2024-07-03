@@ -1,7 +1,25 @@
 .article-card {
     background-color: grey;
+    margin-bottom: 2em;
+    /* background: rgb(36,36,36);
+    background: linear-gradient(90deg, rgba(36,36,36,1) 0%, rgba(94,94,94,1) 2.5%, rgba(94,94,94,1) 97.5%, rgba(36,36,36,1) 100%);  */
 }
 
 img {
     max-width: 100%;
+}
+
+.article-card-title {
+    color: #ffde5a;
+    font-size: large;
+    font-weight: 700;
+}
+
+.article-card-text {
+    color: white;
+    font-size: medium;
+}
+
+.article-card-button {
+    margin-bottom: 1em;
 }
