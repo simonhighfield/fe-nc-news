@@ -15,24 +15,32 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #ffde5a;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
 }
-
-body {
+ body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex;
+  place-items: center; */
+}
+
+.main-content {
+  /* place-items: center; */
   min-width: 320px;
+  padding-left: 25%;
+  padding-right: 25%;
+  max-width: 50%;
   min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin-top: 0;
+  padding-top: 0.5em;
 }
 
 button {

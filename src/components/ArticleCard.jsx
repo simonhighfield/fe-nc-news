@@ -9,8 +9,8 @@ export default function ArticleCard({ article }) {
         <Card className="article-card">
             <Card.Img variant="top" src={article.article_img_url} />
             <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
-                <Card.Text>
+                <Card.Title className={'article-card-title'}>{article.title}</Card.Title>
+                <Card.Text className={'article-card-text'}>
                     {article.author}
                     <br/>
                     {date}
@@ -20,7 +20,7 @@ export default function ArticleCard({ article }) {
                     Comment: {article.comment_count}                 
                 </Card.Text>
             <Link to={`/articles/${article.article_id}`}>
-                <Button variant="primary">View Article</Button>
+                <Button className={'article-card-button'} variant="primary">View Article</Button>
             </Link>
             </Card.Body>
         </Card>

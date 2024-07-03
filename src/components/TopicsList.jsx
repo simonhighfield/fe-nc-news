@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
+import "./TopicsList.css";
 
 
 export default function TopicsList(topic, setTopic) {
@@ -21,15 +22,11 @@ export default function TopicsList(topic, setTopic) {
         })
     }, [])
 
-    function handleSelectTopic(event) {
-        // console.log(event.target.childNodes[1].data);
-    }
-
     return (
         <section>
             {topics.map((topic, index) => {
                 return (
-                    <Link to={`/topics/${topic.slug}`} key={index}><button onClick={handleSelectTopic}>#{topic.slug}</button></Link>
+                    <Link to={`/topics/${topic.slug}`} key={index}>#{topic.slug}</Link>
                 )
             })}
         </section>
