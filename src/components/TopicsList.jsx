@@ -22,10 +22,6 @@ export default function TopicsList(topic, setTopic) {
         })
     }, [])
 
-    function handleSelectTopic(event) {
-        // console.log(event.target.childNodes[1].data);
-    }
-
     return (
         <section>
             {topics.map((topic, index) => {
