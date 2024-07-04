@@ -5,9 +5,12 @@ nav {
     background-color: #C61900;
     padding-top: 1em;
     padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
 }
 
 .nav-img {
     padding-top: 1em;
-    height: 15em;
+    height: auto;
 }
