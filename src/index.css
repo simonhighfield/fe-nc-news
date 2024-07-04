@@ -28,7 +28,9 @@ a:hover {
 }
 
 .main-content {
-  /* place-items: center; */
+  display: flex;
+  flex-direction: column;
+  place-items: center;
   min-width: 320px;
   padding-left: 25%;
   padding-right: 25%;
