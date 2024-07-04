@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./TopicsList.css";
 
 
-export default function TopicsList(topic, setTopic) {
+export default function TopicsList() {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState("")
     const [topics, setTopics] = useState([]);

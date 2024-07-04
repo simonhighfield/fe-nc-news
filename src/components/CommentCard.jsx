@@ -15,15 +15,19 @@ export default function CommentCard({ comment, user, currentUser, currentComment
         setIsLoading(true)
         deleteComment(comment.comment_id)
         .then((response)=> {
-            setCurrentComments((currentComments) => {
-                let index = currentComments.indexOf(comment)
-                return [...currentComments.slice(0, index), ...currentComments.slice(index+1)]
-            })
+            removeFromCurrentComments();
             setIsLoading(false)
         })
         .catch((err) => {
             console.log(err);
         })
+
+        function removeFromCurrentComments() {
+            setCurrentComments((currentComments) => {
+                let index = currentComments.indexOf(comment);
+                return [...currentComments.slice(0, index), ...currentComments.slice(index + 1)];
+            });
+        }
     }
 
 
