@@ -25,7 +25,6 @@ function App() {
 
 
   useEffect(() => {
-    document.title = "Discus"
     setIsLoading(true)
     fetchUsers()
     .then((response) => {
