@@ -34,7 +34,7 @@ a:hover {
   min-width: 320px;
   padding-left: 25%;
   padding-right: 25%;
-  max-width: 50%;
+  width: 50%;
   min-height: 100vh;
 }
 

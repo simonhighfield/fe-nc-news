@@ -5,6 +5,8 @@
 
 .options-bar {
     display: flex;
+    max-width: 700px;
+    width: 100%;;
 }
 
 .options-item {
