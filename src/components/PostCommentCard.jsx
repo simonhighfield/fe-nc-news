@@ -16,15 +16,18 @@ export default function PostCommentCard({ currentUser, article_id, currentCommen
             commentOnArticle(article_id, currentUser.username, newComment)
             .then((postedComment) => {
                 setNewComment("")
-                // Updating the state only refreshes currentComments.map in ArticleComments.jsx; whereas useEffect reloads the whole page
-                setCurrentComments((currentComments) =>
-                    [postedComment,...currentComments] 
-                )
+                addPostedtoCurrentComments(postedComment);
                 setIsLoading(false)
             })
             .catch((err) => {
                 console.log(err.response.data.msg);
             })
+        }
+        
+        function addPostedtoCurrentComments(postedComment) {
+            // Updating the state only refreshes currentComments.map in ArticleComments.jsx; whereas useEffect reloads the whole page
+            setCurrentComments((currentComments) => [postedComment, ...currentComments]
+            );
         }
     }
 

@@ -1,7 +1,3 @@
-import Image from 'react-bootstrap/Image';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 import './CommentCard.css'
 import AuthorBubble from './AuthorBubble';
 import { deleteComment } from '../../utils/api';
@@ -15,14 +11,14 @@ export default function CommentCard({ comment, user, currentUser, currentComment
         setIsLoading(true)
         deleteComment(comment.comment_id)
         .then((response)=> {
-            removeFromCurrentComments();
+            removeDeletedFromCurrentComments();
             setIsLoading(false)
         })
         .catch((err) => {
             console.log(err);
         })
 
-        function removeFromCurrentComments() {
+        function removeDeletedFromCurrentComments() {
             setCurrentComments((currentComments) => {
                 let index = currentComments.indexOf(comment);
                 return [...currentComments.slice(0, index), ...currentComments.slice(index + 1)];
