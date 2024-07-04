@@ -8,7 +8,7 @@ export default function NavBar(topic, setTopic) {
     return (
         <>
             <nav>
-                <img className="nav-img" src={"../src/assets/DiscusLogo.png"} />
+                <img className="nav-img" src={"../src/assets/discus-logo.png"} />
                 <TopicsList topic={topic} setTopic={setTopic}/>
             </nav>
         </>
