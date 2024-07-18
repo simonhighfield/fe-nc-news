@@ -2,6 +2,10 @@ import TopicsList from "./TopicsList";
 import "./NavBar.css"
 import './OptionsBar.css'
 import { Link, Route } from "react-router-dom";
+import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
+import { IconContext } from "react-icons";
+
+
 
 export default function NavBar() {
 
@@ -11,7 +15,22 @@ export default function NavBar() {
                 <Link to={`/`}>
                     <img className="nav-img" src={'/discus-logo.png'} />
                 </Link>
-                <TopicsList/>
+
+                <div className="nav-row">
+                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "global-class-name" }}>
+                        <div>
+                            <AiFillHome />
+                        </div>
+                    </IconContext.Provider>
+
+                    <TopicsList/>
+
+                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "global-class-name" }}>
+                        <div>
+                            <AiOutlineMenu />
+                        </div>
+                    </IconContext.Provider>
+                </div>
             </nav>
         </>
     )
