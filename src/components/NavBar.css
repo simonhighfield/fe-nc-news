@@ -1,5 +1,6 @@
 nav {
-    /* width: 100em; */
+    /* width: 100%; */
+    /* max-width: 700px; */
     padding-left: 25%;
     padding-right: 25%;
     background-color: #C61900;
@@ -9,6 +10,7 @@ nav {
     flex-direction: column;
     place-items: center;
 }
+
 
 .nav-img {
     padding-top: 1em;
@@ -20,8 +22,14 @@ nav {
     flex-direction: row ;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+    height: 2em;
 }
 
 .icon:hover {
     fill: #747bff;
-  }
+}
+
+.icon-div {
+    height: 100%;
+}
