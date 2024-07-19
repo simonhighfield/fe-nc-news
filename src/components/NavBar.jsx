@@ -17,7 +17,7 @@ export default function NavBar() {
                 </Link>
 
                 <div className="nav-row">
-                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "global-class-name" }}>
+                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
                         <div>
                             <AiFillHome />
                         </div>
@@ -25,7 +25,7 @@ export default function NavBar() {
 
                     <TopicsList/>
 
-                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "global-class-name" }}>
+                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
                         <div>
                             <AiOutlineMenu />
                         </div>

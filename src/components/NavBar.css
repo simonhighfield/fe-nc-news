@@ -21,3 +21,7 @@ nav {
     width: 100%;
     justify-content: space-between;
 }
+
+.icon:hover {
+    fill: #747bff;
+  }
