@@ -9,7 +9,8 @@ import { useEffect, useState } from "react";
 
 export default function NavBar() {
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 750)
+    const mobileWidth = 800;
+    const [isMobile, setIsMobile] = useState(window.innerWidth < mobileWidth)
 
     useEffect(() => {
         window.addEventListener("resize", handleResize)
@@ -19,7 +20,7 @@ export default function NavBar() {
     }, []);
 
     const handleResize = () => {
-        if (window.innerWidth < 750) {
+        if (window.innerWidth < mobileWidth) {
             setIsMobile(true)
         } else {
             setIsMobile(false)
