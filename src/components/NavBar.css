@@ -21,7 +21,7 @@ nav {
   
   /* Desktop */
   @media (min-width:900px) {
-    .nav {
+    nav {
       padding-left: 25%;
       padding-right: 25%;
       width: 50%;
