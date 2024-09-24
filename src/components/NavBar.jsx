@@ -53,7 +53,7 @@ export default function NavBar() {
 
                         <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
                             <div className="icon-div">
-                                    logged in as: 
+                                    user:   
                                 <AiFillSmile />
                             </div>
                         </IconContext.Provider>

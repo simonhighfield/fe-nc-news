@@ -54,10 +54,17 @@ nav {
     fill: #747bff;
 }
 
+a, svg, section {
+  height: 100%;
+}
+
 .icon-div {
     height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .hidden {
     display: none;
 }
+
