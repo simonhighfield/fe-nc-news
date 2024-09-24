@@ -34,11 +34,13 @@ export default function NavBar() {
                 </Link>
 
                 <div className="nav-row">
-                    <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
-                        <div className="icon-div">
-                            <AiFillHome />
-                        </div>
-                    </IconContext.Provider>
+                    <Link to={'/'}>
+                        <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
+                            <div className="icon-div">
+                                <AiFillHome />
+                            </div>
+                        </IconContext.Provider>
+                    </Link>
                     
                     {isMobile ? 
                         <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
@@ -46,17 +48,16 @@ export default function NavBar() {
                             <AiOutlineMenu />
                         </div>
                     </IconContext.Provider>
-                    : 
-                        <>
-                            <TopicsList/>
+                    : <>
+                        <TopicsList/>
 
-                            <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
-                                <div className="icon-div">
-                                        logged in as: 
-                                    <AiFillSmile />
-                                </div>
-                            </IconContext.Provider>
-                        </>
+                        <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
+                            <div className="icon-div">
+                                    logged in as: 
+                                <AiFillSmile />
+                            </div>
+                        </IconContext.Provider>
+                </>
                     }                  
                 </div>                    
             </div>
