@@ -58,6 +58,11 @@ a, svg, section {
   height: 100%;
 }
 
+a {
+  /* padding-left: 0;
+  padding-right: 0; */
+}
+
 .icon-div {
     height: 100%;
     display: flex;

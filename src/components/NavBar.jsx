@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function NavBar() {
 
-    const mobileWidth = 800;
+    const mobileWidth = 820;
     const [isMobile, setIsMobile] = useState(window.innerWidth < mobileWidth)
 
     useEffect(() => {
