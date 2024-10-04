@@ -49,16 +49,17 @@ export default function NavBar() {
                             <AiOutlineMenu />
                         </div>
                     </IconContext.Provider>
-                    : <>
-                        <TopicsList/>
+                    : 
+                        <>
+                            <TopicsList/>
 
-                        <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
-                            <div className="icon-div">
-                                    user:   
-                                <AiFillSmile />
-                            </div>
-                        </IconContext.Provider>
-                </>
+                            <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
+                                <div className="icon-div">
+                                        {isMobile ? "" : "user: "}   
+                                    <AiFillSmile />
+                                </div>
+                            </IconContext.Provider>
+                        </>
                     }                  
                 </div>                    
             </div>
