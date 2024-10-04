@@ -5,6 +5,8 @@ import { Link, Route } from "react-router-dom";
 import { AiFillHome, AiFillSmile, AiOutlineMenu } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useEffect, useState } from "react";
+import reactSelect from "react-select";
+import TopicsSelector from "./TopicsSelector";
 
 
 export default function NavBar() {
@@ -44,23 +46,24 @@ export default function NavBar() {
                     </Link>
                     
                     {isMobile ? 
-                        <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
-                        <div className="icon-div">
-                            <AiOutlineMenu />
-                        </div>
-                    </IconContext.Provider>
-                    : 
                         <>
-                            <TopicsList/>
+                            <TopicsSelector/>
 
+                            {/* <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
+                                <div className="icon-div">
+                                    <AiOutlineMenu />
+                                </div>
+                            </IconContext.Provider> */}
+                        </>
+                    : 
+                            <TopicsList/>
+                    }                  
                             <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
                                 <div className="icon-div">
                                         {isMobile ? "" : "user: "}   
                                     <AiFillSmile />
                                 </div>
                             </IconContext.Provider>
-                        </>
-                    }                  
                 </div>                    
             </div>
         </nav>
