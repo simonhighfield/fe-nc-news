@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Select from 'react-select';
 import './TopicsSelector.css'
 
+
 const options = [
     {value: 'coding', label: 'Coding'},
     {value: 'football', label: 'Football'},
