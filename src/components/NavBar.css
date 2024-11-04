@@ -36,7 +36,8 @@ nav {
 }
 
 .nav-img {
-    padding-top: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
     height: auto;
 }
 
