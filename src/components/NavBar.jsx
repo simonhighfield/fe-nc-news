@@ -65,7 +65,7 @@ export default function NavBar() {
                     
                     {isMobile ? 
                         <>
-                            <TopicsSelector/>
+                            <TopicsSelector topics={topics}/>
 
                             {/* <IconContext.Provider value={{ size: '2em', color: "#ffde5a", className: "icon" }}>
                                 <div className="icon-div">

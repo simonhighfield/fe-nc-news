@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import "./TopicsList.css";
 
-
 export default function TopicsList( {topics} ) {
-
     return (
         <section>
             {topics.map((topic, index) => {
