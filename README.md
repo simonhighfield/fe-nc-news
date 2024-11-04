@@ -1,3 +1,4 @@
+# About Discus
 Discus (formerly known as NC News) is a web app for news-posting and discussion
 
 The front-end is built with React, and uses some Bootstrap-react components.
